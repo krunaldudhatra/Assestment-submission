@@ -15,7 +15,7 @@ function Add(numbers) {
     throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
   }
 
-  return parts.reduce((sum, n) => sum + n, 0);
+  return parts.reduce((sum, n) => (n <= 1000 ? sum + n : sum), 0);
 }
 
 
