@@ -8,10 +8,16 @@ function Add(numbers) {
     numbers = rest;
   }
 
-  return numbers
-    .split(delimiters)
-    .reduce((sum, num) => sum + parseInt(num), 0);
+  const parts = numbers.split(delimiters).map(Number);
+  const negatives = parts.filter(n => n < 0);
+
+  if (negatives.length) {
+    throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
+  }
+
+  return parts.reduce((sum, n) => sum + n, 0);
 }
+
 
 function escape(str) {
   return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
