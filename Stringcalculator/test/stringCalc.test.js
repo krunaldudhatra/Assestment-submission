@@ -31,3 +31,15 @@ test('throws on negative numbers', () => {
 test('ignores numbers greater than 1000', () => {
   expect(Add("2,1001")).toBe(2);
 });
+
+test('supports multi-length delimiters like [***]', () => {
+  expect(Add("//[***]\n1***2***3")).toBe(6);
+});
+
+test('supports multiple custom delimiters', () => {
+  expect(Add("//[*][%]\n1*2%3")).toBe(6);
+});
+
+test('supports multiple multi-length delimiters', () => {
+  expect(Add("//[**][%%]\n1**2%%3")).toBe(6);
+});
